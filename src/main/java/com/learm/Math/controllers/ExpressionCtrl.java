@@ -1,6 +1,7 @@
 package com.learm.Math.controllers;
 
 import com.learm.Math.basics.Expression;
+import com.learm.Math.basics.ExpressionAdapter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,8 @@ public class ExpressionCtrl {
         mathExpression.setOperation(op);
         mathExpression.setOperand1(x);
         mathExpression.setOperand2(y);
-        return mathExpression.evaluateExpression();
+        ExpressionAdapter adapter = new ExpressionAdapter();
+        return adapter.solveExpression(mathExpression);
     }
 
 }

@@ -6,7 +6,7 @@ public class Expression {
     private Integer operand1;
     private Integer operand2;
 
-    public String getOperation() {
+    String getOperation() {
         return operation;
     }
 
@@ -14,7 +14,7 @@ public class Expression {
         this.operation = operation;
     }
 
-    public Integer getOperand1() {
+    Integer getOperand1() {
         return operand1;
     }
 
@@ -22,28 +22,12 @@ public class Expression {
         this.operand1 = operand1;
     }
 
-    public Integer getOperand2() {
+    Integer getOperand2() {
         return operand2;
     }
 
     public void setOperand2(Integer operand2) {
         this.operand2 = operand2;
-    }
-
-    /**
-     * Calculate the result of expression, if operation is supported
-     * @return the result of evaluation
-     */
-    public String evaluateExpression() {
-        ExpressionAdapter adapter= new ExpressionAdapter();
-        if(adapter.isSupportedOperation(operation)) {
-            try {
-                return adapter.solveExpression(operation, operand1, operand2);
-            }catch (ArithmeticException e) {
-                return "Operation result is missing or is inconclusive";
-            }
-        }
-        return "Operation is currently not supported";
     }
 
 }

@@ -2,18 +2,39 @@ package com.learm.Math.basics;
 
 import java.util.ArrayList;
 
-class ExpressionAdapter {
+public class ExpressionAdapter {
 
 
     /**
-     * Perform operation and get result
+     * Perform required operations in order to solve expression
+     * @param mathExpression the Expression to be solved
+     * @return the evaluation of expression
+     */
+    public String solveExpression(Expression mathExpression) {
+
+        String operation = mathExpression.getOperation();
+        Integer operand1 = mathExpression.getOperand1();
+        Integer operand2 = mathExpression.getOperand2();
+
+        if(isSupportedOperation(operation)) {
+            try {
+                return performOperation(operation, operand1, operand2);
+            }catch (ArithmeticException | NullPointerException e) {
+                return "Operation result is missing or is inconclusive";
+            }
+        }
+        return "Operation is currently not supported";
+
+    }
+
+    /**
+     * Solve expression
      * @param operation the operation
      * @param x the first operand
      * @param y the second operand
-     * @return result of operation
+     * @return result
      */
-    String solveExpression(String operation, Integer x, Integer y) {
-
+    private String performOperation(String operation, Integer x, Integer y) {
         int result = 0;
 
         switch(operation) {
@@ -33,7 +54,7 @@ class ExpressionAdapter {
      * @param operation - the math operation to check
      * @return true if the operation is supported, false otherwise
      */
-    boolean isSupportedOperation(String operation) {
+    private boolean isSupportedOperation(String operation) {
 
         ArrayList<String> supportedOperations = new ArrayList<>();
         supportedOperations.add("add");
